@@ -1,0 +1,6 @@
+{ Description: "Print an integer literal"
+116
+}
+BEGIN
+  PRINT 116
+END
