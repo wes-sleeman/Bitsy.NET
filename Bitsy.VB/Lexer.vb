@@ -1,6 +1,4 @@
 ﻿Friend Class Lexer
-    Public ReadOnly Property HasMore As Boolean
-
     Public ReadOnly Property Current As IToken
         Get
             Return _Current
@@ -184,7 +182,7 @@ Module Tokens
                 Case "+"c
                     Type = TokenType.Plus
                 Case "-"c
-                    Type = TokenType.Minus
+                    Type = TokenType.Dash
                 Case "*"c
                     Type = TokenType.Star
                 Case "/"c
@@ -202,14 +200,14 @@ Module Tokens
         Variable
         IntLiteral
         Comment
-        LeftParen = AscW("("c)
-        RightParen = AscW(")"c)
-        Plus = AscW("+"c)
-        Minus = AscW("-"c)
-        Star = AscW("*"c)
-        Slash = AscW("/"c)
-        Percent = AscW("%"c)
-        Equals = AscW("="c)
+        LeftParen
+        RightParen
+        Plus
+        Dash
+        Star
+        Slash
+        Percent
+        Equals
         Begin
         [End]
         IfP

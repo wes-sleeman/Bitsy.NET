@@ -70,7 +70,7 @@
 
         Factor()
 
-        If op = TokenType.Minus Then
+        If op = TokenType.Dash Then
             Emit("Register = -Register")
         End If
     End Sub
@@ -102,7 +102,7 @@
         Select Case optype.Value
             Case TokenType.Plus
                 op = "+"
-            Case TokenType.Minus
+            Case TokenType.Dash
                 op = "-"
             Case TokenType.Star
                 op = "*"
