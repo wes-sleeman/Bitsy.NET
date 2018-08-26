@@ -6,8 +6,8 @@ Module Main
         Dim VBCPATH$ = GetVBCPath()
 
         If args.Equals({"test"}) OrElse args.Length = 0 Then
-            args = "/norun addition.bitsy assignment.bitsy division.bitsy Factorial.bitsy fibonacci.bitsy if_negative.bitsy if_negative_else.bitsy if_negative_nested.bitsy if_positive.bitsy if_positive_else.bitsy if_positive_else_nested.bitsy if_positive_nested.bitsy if_zero.bitsy if_zero_else.bitsy if_zero_nested.bitsy loop_break.bitsy loop_counter.bitsy loop_nested.bitsy modulus.bitsy multiplication.bitsy parentheses.bitsy precedence.bitsy primes.bitsy print_int.bitsy print_multiple_ints.bitsy subtraction.bitsy unassigned_variables.bitsy".Split({" "c}, StringSplitOptions.RemoveEmptyEntries)
-            Environment.CurrentDirectory &= "..\..\..\tests"
+            args = "/norun addition.bitsy assignment.bitsy division.bitsy fibonacci.bitsy if_negative.bitsy if_negative_else.bitsy if_negative_nested.bitsy if_positive.bitsy if_positive_else.bitsy if_positive_else_nested.bitsy if_positive_nested.bitsy if_zero.bitsy if_zero_else.bitsy if_zero_nested.bitsy loop_break.bitsy loop_counter.bitsy loop_nested.bitsy modulus.bitsy multiplication.bitsy parentheses.bitsy precedence.bitsy primes.bitsy print_int.bitsy print_multiple_ints.bitsy subtraction.bitsy unassigned_variables.bitsy".Split({" "c}, StringSplitOptions.RemoveEmptyEntries)
+            Environment.CurrentDirectory &= "..\..\..\..\tests"
         End If
 
         Console.WriteLine("Reading input file(s).")

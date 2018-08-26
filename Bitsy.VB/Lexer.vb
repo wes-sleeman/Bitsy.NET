@@ -6,7 +6,7 @@
     End Property
 
     Private ReadOnly Code$
-    Private Index As ULong = 0
+    Private Index As Integer = 0
     Private _Current As IToken
 
     Sub New(Code As String)

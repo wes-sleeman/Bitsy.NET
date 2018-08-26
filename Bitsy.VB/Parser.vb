@@ -12,7 +12,9 @@
     Private Sub Program()
         Match(TokenType.Begin)
         Setup()
+
         Block()
+
         Match(TokenType.End, False)
         Teardown()
     End Sub
@@ -43,7 +45,7 @@
         While Lexer.Current.Value Like "[+-]"
             Push()
             Dim op = Lexer.Current.Type
-            Match(Lexer.Current.Type)
+            Match(op)
             Term()
             Pop(op)
         End While
@@ -55,7 +57,7 @@
         While Lexer.Current.Value Like "[*/%]"
             Push()
             Dim op = Lexer.Current.Type
-            Match(Lexer.Current.Type)
+            Match(op)
             Factor()
             Pop(op)
         End While
@@ -65,7 +67,7 @@
         Dim op = TokenType.Plus
         If Lexer.Current.Value Like "[+-]" Then
             op = Lexer.Current.Type
-            Match(Lexer.Current.Type)
+            Match(op)
         End If
 
         Factor()
@@ -178,10 +180,22 @@
         Emit($"Variable(""{varname}"") = Register")
     End Sub
 
-    Sub Setup()
-        Emit("Imports System
-Imports System.Collections.Generic
+    Private Function Match(Type As TokenType, Optional Advance As Boolean = True) As String
+        If Not Lexer.Current.Type = Type Then
+            Throw New ArgumentException($"Error: Expected {Type} but received {Lexer.Current.Type}.")
+        End If
 
+        Dim retval$ = Lexer.Current.Value
+        If Advance Then Lexer.Advance()
+        Return retval
+    End Function
+
+    Private Sub Emit(output$)
+        outputbuffer.Add(vbTab & output)
+    End Sub
+
+    Sub Setup()
+        Emit("Imports System : Imports System.Collections.Generic
 Module Program
     Class VariableDictionary
         Inherits Dictionary(Of String, Integer)
@@ -224,19 +238,5 @@ Module Program
     Console.ReadKey()
 End Sub
 End Module")
-    End Sub
-
-    Private Function Match(Type As TokenType, Optional Advance As Boolean = True) As String
-        If Not Lexer.Current.Type = Type Then
-            Throw New ArgumentException($"Error: Expected {Type} but received {Lexer.Current.Type}.")
-        End If
-
-        Dim retval = Lexer.Current.Value
-        If Advance Then Lexer.Advance()
-        Return retval
-    End Function
-
-    Private Sub Emit(output$)
-        outputbuffer.Add(vbTab & output)
     End Sub
 End Module
